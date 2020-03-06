@@ -1,0 +1,34 @@
+%h1 Przejazdy rowerowe
+%table.standard{:width => "100%"}
+  %thead
+    %tr
+      %th.standard Lp.
+      %th.standard Data
+      %th.standard Dystans
+      %th.standard Czas przejazdu
+      %th.standard Rodzaj
+      %th.standard Prędkość
+      %th.standard Tempo
+      %th.standard{:colspan => "3"}
+
+
+%tbody
+  -# = button_to 'Dodaj przejazd', new_ride_path, method: :get, :class => 'button'
+    %br/
+    %br/
+    - @rides.each do |ride|
+      %tr.striped
+        %td.standard= ride.ordinal_number
+        %td.standard= ride.date
+        %td.standard
+          = sprintf("%.2f", ride.distance)
+        %td.standard
+          = sprintf("%02d", ride.hours)
+        %td.standard= ride.kind
+        %td.standard
+          = ride.counting_speed
+        %td.standard= ride.counting_pace
+        %td.standard= link_to(image_tag('/details.png', size: '16x16', title: 'Szczegóły'), ride)
+        %td.standard= link_to(image_tag('/edit.png', size: '16x16', title: 'Edycja'), edit_ride_path(ride))
+        -# %td.standard= button_to 'Usuń', ride, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'button'
+        -# %td.standard
