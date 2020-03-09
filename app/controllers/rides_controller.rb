@@ -3,8 +3,9 @@ class RidesController < ApplicationController
 
   # GET /rides
   # GET /rides.json
+
   def index
-    @rides = Ride.all
+    @rides = Ride.all.order('date DESC')
   end
 
   # GET /rides/1
@@ -59,6 +60,10 @@ class RidesController < ApplicationController
       format.html { redirect_to rides_url, notice: 'Ride was successfully destroyed.' }
       format.json { head :no_content }
     end
+
+    def stats
+    end
+
   end
 
   private
@@ -67,8 +72,8 @@ class RidesController < ApplicationController
       @ride = Ride.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
+    # Never trust parameters from the scary internet, only allow the white list through.
     def ride_params
-      params.fetch(:ride, {})
+      params.require(:ride).permit(:date, :distance, :hours, :minutes, :seconds, :kind)
     end
 end

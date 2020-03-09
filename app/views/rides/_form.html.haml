@@ -1,17 +1,36 @@
-<%= form_with(model: ride, local: true) do |form| %>
-  <% if ride.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(ride.errors.count, "error") %> prohibited this ride from being saved:</h2>
-
-      <ul>
-        <% ride.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+= form_with(model: ride, local: true) do |f|
+  - if ride.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(ride.errors.count, "error")
+        prohibited this ride from being saved:
+      %ul
+        - ride.errors.full_messages.each do |message|
+          %li= message
+  .field
+  = f.label t(:'rides.new.name')
+  = f.text_field :name
+  .field
+  = f.label t(:'rides.new.date')
+  = f.date_select :date, class: 'btn btn-dark dropdown-toggle'
+  .field
+    = f.label t(:'rides.new.distance')
+    = f.text_field :distance
+  .field.number_field
+    = f.label :hours, t(:'rides.new.ride_time')
+    = f.number_field :hours, placeholder: t(:'rides.new.hours')
+    = f.number_field :minutes, placeholder: t(:'rides.new.minutes')
+    = f.number_field :seconds, placeholder: t(:'rides.new.seconds')
+  .field
+    = f.label t(:'rides.new.kind')
+    = f.text_field :kind
+  .field
+    = f.label t(:'rides.new.image')
+    = f.file_field :image, class: 'btn btn-sm btn-bark'
+    = f.hidden_field :image_cache
+  %br
+  .actions
+    - if params[:action] == 'new'
+      = f.submit(t(:'rides.new.submit'), class: 'btn btn-sm btn-dark')
+    - elsif params[:action] == 'edit'
+      = f.submit(t(:'rides.edit.submit'), class: 'btn btn-sm btn-dark')

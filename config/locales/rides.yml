@@ -1,0 +1,99 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# The following keys must be escaped otherwise they will not be retrieved by
+# the default I18n backend:
+#
+# true, false, on, off, yes, no
+#
+# Instead, surround them with single quotes.
+#
+# en:
+#   'true': 'foo'
+#
+# To learn more, please read the Rails Internationalization guide
+# available at https://guides.rubyonrails.org/i18n.html.
+
+pl:
+  date:
+    month_names:
+    -
+    - styczeń
+    - luty
+    - marzec
+    - kwiecień
+    - maj
+    - czerwiec
+    - lipiec
+    - sierpień
+    - wrzesień
+    - październik
+    - listopad
+    - grudzień
+    order:
+      - :day
+      - :month
+      - :year
+  layouts:
+    application:
+      cycling: 'Przejazdy rowerowe'
+  rides:
+    index:
+      header: 'Przejazdy rowerowe'
+      add_ride: 'Dodaj przejazd'
+      date: 'Data'
+      name: 'Opis'
+      distance: 'Dystans'
+      ride_time: 'Czas przejazdu'
+      kind: 'Rodzaj'
+      average_speed: 'Śr. prędkość'
+      average_pace: 'Śr. tempo'
+      details: 'Szczegóły'
+      edit: 'Edycja'
+      delete: 'Usuń'
+      confirm: 'Usunąć przjazd?'
+    new:
+      header: 'Nowy przejazd'
+      back: 'Powrót'
+      date: 'Data'
+      name: 'Opis'
+      distance: 'Dystans'
+      ride_time: 'Czas przejazdu'
+      hours: 'godz.'
+      minutes: 'min.'
+      seconds: 'sek.'
+      kind: 'Rodzaj'
+      image: 'Zdjęcie'
+      submit: 'Dodaj'
+    edit:
+      header: 'Edycja przejazdu'
+      edit: 'Edycja'
+      back: 'Powrót'
+      submit: 'Aktualizuj'
+    show:
+      header: 'Przejazd: '
+      edit: 'Edycja'
+      back: 'Powrót'
+      date: 'Data:'
+      distance: 'Dystans:'
+      ride_time: 'Czas przejazdu:'
+      kind: 'Rodzaj:'
+      average_speed: 'Średnia prędkość:'
+      average_pace: 'Średnie tempo:'
+      image_gallery: 'Galeria zdjęcie'
+      add_image: 'Dodaj zdjęcie'
