@@ -1,15 +1,31 @@
 <!DOCTYPE html>
-%html
-  %head
-    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %title= t('.cycling')
-    = csrf_meta_tags
-    = csp_meta_tag
-    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'true'
-    = javascript_pack_tag 'application', 'data-turbolinks-track': 'true'
-    = favicon_link_tag('/favicon.ico')
-  %body
-  %img{:src => "/cycling.jpg"}/
-  %br
-  %br
-  = yield
+%div.container.justify-content-center
+  %html
+    %head
+      %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+      %title= t('.cycling')
+      = csrf_meta_tags
+      = csp_meta_tag
+      = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'true'
+      = javascript_pack_tag 'application', 'data-turbolinks-track': 'true'
+      = favicon_link_tag('/favicon.ico')
+    %body
+      %img{:src => "/cycling.jpg"}/
+      %p.float-right.text-infos
+        - if user_signed_in?
+          = t(:'devise.shared.logged')
+          = succeed "." do
+            %strong= current_user.email#profile&.nickname
+          = link_to t(:'devise.shared.edit'), edit_user_registration_path, class: 'navbar-link'
+          |
+          \#{link_to t(:'devise.shared.logout'), destroy_user_session_path, method: :delete, class: 'navbar-link'}
+        - else
+          = link_to t('devise.shared.sign_up'), new_user_registration_path, class: 'navbar-link'
+          |
+          \#{link_to t(:'devise.shared.log_in'), new_user_session_path, class: 'navbar-link'}
+    %br
+      - if notice
+        %p.alert.alert-success= notice
+      - if alert
+        %p.alert.alert-danger= alert
+    = yield

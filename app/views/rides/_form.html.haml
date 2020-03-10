@@ -8,24 +8,30 @@
         - ride.errors.full_messages.each do |message|
           %li= message
   .field
-  = f.label t(:'rides.new.name')
-  = f.text_field :name
+    = f.label t(:'rides.new.name')
+    %br
+    = f.text_field :name
   .field
-  = f.label t(:'rides.new.date')
-  = f.date_select :date, class: 'btn btn-dark dropdown-toggle'
+    = f.label t(:'rides.new.date')
+    %br
+    = f.date_select :date, class: 'btn btn-dark dropdown-toggle'
   .field
     = f.label t(:'rides.new.distance')
+    %br
     = f.text_field :distance
   .field.number_field
     = f.label :hours, t(:'rides.new.ride_time')
+    %br
     = f.number_field :hours, placeholder: t(:'rides.new.hours')
     = f.number_field :minutes, placeholder: t(:'rides.new.minutes')
     = f.number_field :seconds, placeholder: t(:'rides.new.seconds')
   .field
     = f.label t(:'rides.new.kind')
+    %br
     = f.text_field :kind
   .field
     = f.label t(:'rides.new.image')
+    %br
     = f.file_field :image, class: 'btn btn-sm btn-bark'
     = f.hidden_field :image_cache
   %br

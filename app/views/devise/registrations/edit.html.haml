@@ -1,0 +1,52 @@
+%div.row
+  .col-6.mb-2
+    %h2= t('.header')
+    = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+      = render "devise/shared/error_messages", resource: resource
+      %br
+      -# .field
+      -#   = f.fields_for :profile do |fi|
+      -#     = fi.label t('.nickname')
+      -#     %br
+      -#     = fi.text_field :nickname
+      .field
+        = f.label t('.firstname')
+        %br
+        = f.text_field :firstname
+      .field
+        = f.label t('.lastname')
+        %br
+        = f.text_field :lastname
+      .field
+        = f.label t('.email')
+        %br/
+        = f.email_field :email, autocomplete: "email"
+      - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+        %div
+          Currently waiting confirmation for: #{resource.unconfirmed_email}
+      .field
+        = f.label t('.password')
+        %i (zostaw pole puste, jeśli nie zmieniasz hasła)
+        %br/
+        = f.password_field :password, autocomplete: "new-password"
+        - if @minimum_password_length
+          %br/
+          %em
+            (minimum #{@minimum_password_length} znaków)
+      .field
+        = f.label t('.password_confirmation')
+        %br/
+        = f.password_field :password_confirmation, autocomplete: "new-password"
+      .field
+        = f.label t('.current_password')
+        %i (niezbędne do zatwierdzenia zmian)
+        %br/
+        = f.password_field :current_password, autocomplete: "current-password"
+      .actions
+        = f.submit t('.update'), class: 'btn-sm btn-dark'
+  .col-6.align-self-end
+    %h2= t('.removing_account')
+    %p
+      #{button_to t('.remove_account'), registration_path(resource_name), data: { confirm: t('.confirm') }, method: :delete, class: 'btn-sm btn-dark'}
+%br
+= link_to t('.back'), :back

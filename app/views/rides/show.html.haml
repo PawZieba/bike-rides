@@ -1,37 +1,36 @@
-.ml-2.mr-2
-  %h1= t('.header') + @ride.name
+%h1= t('.header') + @ride.name
 
 
-  %table{:width => "50%"}
-    %tr
-      %td
-        %strong= t('.date')
-        = @ride.date
-      %td
-        %strong= t('.distance')
-        = sprintf("%.2f", @ride.distance) +  ' km'
-    %tr
-      %td
-        %strong= t('.ride_time')
-        =@ride.time_view
-      %td
-        %strong= t('.kind')
-        = @ride.kind
-    %tr
-      %td
-        %strong= t('.average_speed')
-        = @ride.counting_speed
-      %td
-        %strong= t('.average_pace')
-        = @ride.counting_pace
-  %br/
-  %hr{:style => "color: green;"}/
-  %h2= t('.image_gallery')
-  -# = image_tag @ride.image.url
-  %p
-    = button_to t('.add_image'), method: :get, class: 'btn-sm btn-dark'
-  %hr{:style => "color: green;"}/
-  %br/
+%table{:width => "50%"}
+  %tr
+    %td
+      %strong= t('.date')
+      = @ride.date
+    %td
+      %strong= t('.distance')
+      = sprintf("%.2f", @ride.distance) +  ' km'
+  %tr
+    %td
+      %strong= t('.ride_time')
+      =@ride.time_view
+    %td
+      %strong= t('.kind')
+      = @ride.kind
+  %tr
+    %td
+      %strong= t('.average_speed')
+      = @ride.counting_speed
+    %td
+      %strong= t('.average_pace')
+      = @ride.counting_pace
+%br/
+%hr{:style => "color: green;"}/
+%h2= t('.image_gallery')
+-# = image_tag @ride.image.url
+%p
+  = button_to t('.add_image'), method: :get, class: 'btn-sm btn-dark'
+%hr{:style => "color: green;"}/
+%br/
 
-  = button_to t('.edit'), edit_ride_path(@ride), method: :get, class: 'btn-sm btn-dark' |
-  = button_to t('.back'), rides_path, method: :get, class: 'btn-sm btn-dark'
+= button_to t('.edit'), edit_ride_path(@ride), method: :get, class: 'btn-sm btn-dark' |
+= button_to t('.back'), rides_path, method: :get, class: 'btn-sm btn-dark'

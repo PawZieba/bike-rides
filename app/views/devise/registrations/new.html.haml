@@ -1,0 +1,38 @@
+%h2= t('.header')
+%br
+= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+  = render "devise/shared/error_messages", resource: resource
+
+  -# .field
+  -#   = f.fields_for :profile do |fi|
+  -#     = fi.label t('.nickname')
+  -#     %br
+  -#     = fi.text_field :nickname
+  .field
+    = f.label t('.firstname')
+    %br
+    = f.text_field :firstname
+  .field
+    = f.label t('.lastname')
+    %br
+    = f.text_field :lastname
+  .field
+    = f.label t('.email')
+    %br
+    = f.email_field :email, autofocus: true, autocomplete: "email"
+  .field
+    = f.label t('.password')
+    - if @minimum_password_length
+      %em
+        (minimum #{@minimum_password_length} znaków)
+    %br
+    = f.password_field :password, autocomplete: "new-password"
+ .field
+    = f.label t('.password_confirmation')
+    %br
+    = f.password_field :password_confirmation, autocomplete: "new-password"
+
+  .actions
+    = f.submit(t('.sign_up'))
+
+= render "devise/shared/links"

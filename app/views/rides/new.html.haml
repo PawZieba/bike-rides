@@ -1,6 +1,5 @@
-.ml-2.mr-2
-  %h1= t('.header')
+%h1= t('.header')
 
-  = render 'form', ride: @ride
+= render 'form', ride: @ride
 
-  = button_to t('.back'), rides_path, method: :get, class: 'btn-sm btn-dark'
+= button_to t('.back'), rides_path, method: :get, class: 'btn-sm btn-dark'
