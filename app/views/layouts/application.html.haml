@@ -24,6 +24,7 @@
           |
           \#{link_to t(:'devise.shared.log_in'), new_user_session_path, class: 'navbar-link'}
     %br
+    %br
       - if notice
         %p.alert.alert-success= notice
       - if alert

@@ -36,25 +36,6 @@ pl:
       send_paranoid_instructions: "If your email address exists in our database, you will receive a password recovery link at your email address in a few minutes."
       updated: "Your password has been changed successfully. You are now signed in."
       updated_not_active: "Your password has been changed successfully."
-    registrations:
-      new:
-        header: 'Rejestracja'
-        email: 'Adres email'
-        password: 'Hasło'
-        password_confirmation: 'Potwierdzenie hasła'
-        sign_up: 'Zarejestruj'
-      edit:
-        header: 'Edycja konta'
-        firstname: 'Imię'
-        lastname: 'Nazwisko'
-        email: 'Adres email'
-        password: 'Hasło'
-        password_confirmation: 'Potwierdzenie hasła'
-        current_password: 'Aktualne hasło'
-        update: 'Aktualizuj'
-        removing_account: "Usuwanie konta"
-        remove_account: 'Usuń konto'
-        back: 'Powrót'
       destroyed: "Bye! Your account has been successfully cancelled. We hope to see you again soon."
       signed_up: "Witaj! Rejestracja przebiebła pomyślnie."
       signed_up_but_inactive: "You have signed up successfully. However, we could not sign you in because your account is not yet activated."
@@ -97,3 +78,28 @@ pl:
       not_saved:
         one: "1 error prohibited this %{resource} from being saved:"
         other: "%{count} errors prohibited this %{resource} from being saved:"
+  users:
+    registrations:
+      new:
+        header: 'Rejestracja'
+        nickname: 'Pseudonim'
+        firstname: 'Imię'
+        lastname: 'Nazwisko'
+        email: 'Adres email'
+        password: 'Hasło'
+        password_confirmation: 'Potwierdzenie hasła'
+        sign_up: 'Zarejestruj'
+      edit:
+        header: 'Edycja konta'
+        nickname: 'Pseudonim'
+        firstname: 'Imię'
+        lastname: 'Nazwisko'
+        email: 'Adres email'
+        password: 'Hasło'
+        password_confirmation: 'Potwierdzenie hasła'
+        current_password: 'Aktualne hasło'
+        update: 'Aktualizuj'
+        removing_account: "Usuwanie konta"
+        remove_account: 'Usuń konto'
+        confirm: 'Na pewno usunąć konto?'
+        back: 'Powrót'

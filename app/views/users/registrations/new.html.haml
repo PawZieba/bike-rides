@@ -3,11 +3,11 @@
 = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
   = render "devise/shared/error_messages", resource: resource
 
-  -# .field
-  -#   = f.fields_for :profile do |fi|
-  -#     = fi.label t('.nickname')
-  -#     %br
-  -#     = fi.text_field :nickname
+  .field
+    = f.fields_for :profile do |fi|
+      = fi.label t('.nickname')
+      %br
+      = fi.text_field :nickname
   .field
     = f.label t('.firstname')
     %br

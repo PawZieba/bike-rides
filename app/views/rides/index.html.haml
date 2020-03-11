@@ -20,7 +20,7 @@
       %tr.striped
         %td.text-center= ride.ordinal_number
         %td.text-center= ride.date
-        %td= ride.name
+        %td.text-center= ride.name
         %td.text-center= sprintf("%.2f", ride.distance) + ' km'
         %td.text-center= ride.time_view
         %td.text-center= ride.kind
@@ -28,4 +28,4 @@
         %td.text-center= ride.counting_pace
         %td.text-center= link_to(image_tag('/details.png', size: '16x16', title: t('.details')), ride)
         %td.text-center= link_to(image_tag('/edit.png', size: '16x16', title: t('.edit')), edit_ride_path(ride))
-        %td.text-center= button_to t('.delete'), ride, method: :delete, data: { confirm: t('.confirm') }, class: 'btn-sm btn-dark'
+        %td.text-center= link_to(image_tag('/trash.png', size: '16x16', title: t('.delete')), ride, method: :delete, data: { confirm: t('.confirm') })
