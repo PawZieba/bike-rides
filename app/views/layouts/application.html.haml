@@ -15,7 +15,7 @@
         - if user_signed_in?
           = t(:'devise.shared.logged')
           = succeed "." do
-            %strong= current_user.email#profile&.nickname
+            %strong= current_user.profile&.nickname
           = link_to t(:'devise.shared.edit'), edit_user_registration_path, class: 'navbar-link'
           |
           \#{link_to t(:'devise.shared.logout'), destroy_user_session_path, method: :delete, class: 'navbar-link'}

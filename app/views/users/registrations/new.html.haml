@@ -31,8 +31,6 @@
     = f.label t('.password_confirmation')
     %br
     = f.password_field :password_confirmation, autocomplete: "new-password"
-
+  %br
   .actions
-    = f.submit(t('.sign_up'))
-
-= render "devise/shared/links"
+    = f.submit(t('.sign_up'), class: 'btn-sm btn-dark')
