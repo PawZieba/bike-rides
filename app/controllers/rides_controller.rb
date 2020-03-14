@@ -5,7 +5,7 @@ class RidesController < ApplicationController
   # GET /rides.json
 
   def index
-    @rides = Ride.all.order('date DESC')
+    @rides = Ride.where(:user_id => current_user&.id).order('date DESC')
   end
 
   # GET /rides/1
@@ -25,7 +25,7 @@ class RidesController < ApplicationController
   # POST /rides
   # POST /rides.json
   def create
-    @ride = Ride.new(ride_params)
+    @ride = Ride.new(ride_params.merge(user_id: current_user.id))
 
     respond_to do |format|
       if @ride.save
@@ -74,6 +74,6 @@ class RidesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ride_params
-      params.require(:ride).permit(:name, :date, :distance, :hours, :minutes, :seconds, :kind)
+      params.require(:ride).permit(:user_id, :name, :date, :distance, :hours, :minutes, :seconds, :kind)
     end
 end

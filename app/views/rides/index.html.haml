@@ -1,4 +1,4 @@
-%h2= "#{t('.header')} (#{Ride.count})"
+%h2= "#{t('.header')} (#{@rides.count})"
 %div.float-right.text-primary
   = button_to "+ #{t('.add_ride')}", new_ride_path, method: :get, class: 'btn-sm btn-dark'
 %br
@@ -6,7 +6,6 @@
 %table.table-sm.table-dark.table-striped{:width => "100%"}
   %thead
     %tr
-      %th.text-center Lp.
       %th.col-1.text-center= t('.date')
       %th.col-2.text-center= t('.name')
       %th.col-1.text-center= t('.distance')
@@ -18,14 +17,13 @@
   %tbody
     - @rides.each do |ride|
       %tr.striped
-        %td.text-center= ride.ordinal_number
         %td.text-center= ride.date
         %td.text-center= ride.name
         %td.text-center= sprintf("%.2f", ride.distance) + ' km'
         %td.text-center= ride.time_view
         %td.text-center= ride.kind
-        %td.text-center= ride.counting_speed
-        %td.text-center= ride.counting_pace
+        %td.text-center= ride.calculating_speed
+        %td.text-center= ride.calculating_pace
         %td.text-center= link_to(image_tag('/details.png', size: '16x16', title: t('.details')), ride)
         %td.text-center= link_to(image_tag('/edit.png', size: '16x16', title: t('.edit')), edit_ride_path(ride))
         %td.text-center= link_to(image_tag('/trash.png', size: '16x16', title: t('.delete')), ride, method: :delete, data: { confirm: t('.confirm') })

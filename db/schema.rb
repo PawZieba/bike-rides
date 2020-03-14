@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_11_082218) do
+ActiveRecord::Schema.define(version: 2020_03_14_131537) do
 
   create_table "profiles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "nickname"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 2020_03_11_082218) do
   end
 
   create_table "rides", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.bigint "user_id"
     t.date "date"
     t.string "name"
     t.float "distance"
@@ -31,6 +32,7 @@ ActiveRecord::Schema.define(version: 2020_03_11_082218) do
     t.string "image"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_rides_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
@@ -53,4 +55,5 @@ ActiveRecord::Schema.define(version: 2020_03_11_082218) do
   end
 
   add_foreign_key "profiles", "users"
+  add_foreign_key "rides", "users"
 end
