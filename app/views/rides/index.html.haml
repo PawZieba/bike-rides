@@ -1,7 +1,7 @@
 %h2= "#{t('.header')} (#{@rides.count})"
 %div.float-right.text-primary
   = button_to "+ #{t('.add_ride')}", new_ride_path, method: :get, class: 'btn-sm btn-dark'
-%br
+= button_to 'Statystyki', statistics_path, method: :get, class: 'btn-sm btn-dark'
 %br
 %table.table-sm.table-dark.table-striped{:width => "100%"}
   %thead

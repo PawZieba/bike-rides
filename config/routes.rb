@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :profiles
   resources :rides
+  resources :statistics
 
   devise_for :users, controllers: { registrations: 'users/registrations' }
 

@@ -1,0 +1,14 @@
+pl:
+  statistics:
+    index:
+      header: 'Statystyki'
+      km: ' km'
+      km/h: ' km/h'
+      to_day: 'Na dzień:'
+      month: 'Miesiąc'
+      monthly: 'Miesięczne'
+      annual_averages: 'Średnie roczne za rok '
+      year: 'Rok'
+      difference: 'Różnica'
+      dynamic: 'Dynamika'
+      back: 'Powrót'

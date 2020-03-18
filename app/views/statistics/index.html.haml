@@ -1,0 +1,97 @@
+%h1= t('.header')
+%br
+%h4= t('.monthly')
+
+%table.table-sm.table-dark.table-striped
+  %thead
+    %tr
+      %th.border-right= t('.month')
+      - Ride.by_user_id(current_user.id).years_of_rides.each do |year|
+        %th.border-right.text-center= year
+
+  %tbody
+    - t('date.month_names').each_with_index do |month, index|
+      - unless month.nil?
+        %tr
+          %td.border-right= "#{month}"
+          - Ride.by_user_id(current_user.id).years_of_rides.each do |year|
+            %td.border-right.text-right= sprintf('%.2f', Ride.by_user_id(current_user.id).distance_by_date(Date.new(year.to_i,index,1))) + t('.km')
+    -# %tr
+    -#   %td= 'Razem'
+    -#   %td= Ride.distance_by_date('2017-01-01') + t('.km')
+    -#   %td= Ride.distance_by_date('2018-01-01') + t('.km')
+    -#   %td= Ride.distance_by_date('2020-01-01') + t('.km')
+    -# %td
+    -#   = column_chart Ride.group_by_month(:date, format: '%m-%Y').group_by_year(:date, format: '%Y').sum('distance'), legend: false
+
+%br
+
+%h4= t('.to_day') + " #{l Date.today, format: '%d %B'}"
+%table.table-sm.table-dark.table-striped
+  %thead
+    %tr
+      %th.border-right= t('.year')
+      %th.border-right.text-center= t('.km')
+      %th.border-right.text-center= t('.difference')
+      %th.border-right.text-center= t('.dynamic')
+
+
+  %tbody
+    - Ride.by_user_id(current_user.id).years_of_rides.each do |year|
+      %tr
+        %td.border-right= year
+        %td.border-right.text-right= sprintf('%.2f', Ride.by_user_id(current_user.id).distance_by_year_to_date(year)) + t('.km')
+        %td.border-right.text-right= sprintf('%.2f', Ride.by_user_id(current_user.id).differance(year)) + t('.km')
+        %td.border-right.text-center= Ride.by_user_id(current_user.id).dynamic(year).nan? || Ride.by_user_id(current_user.id).dynamic(year).infinite? ? '' : sprintf('%.2f', Ride.by_user_id(current_user.id).dynamic(year)) + ' %'
+%br
+
+%h4= t('.annual_averages') + "#{Date.today.year}"
+%table.table-sm.table-dark.table-striped
+  %thead
+    %tr
+      %th
+      %th= 'All'
+      - Ride.by_user_id(current_user.id).kind.each do |kind|
+        %th= kind
+
+  %tbody
+    %tr
+      %td= 'Razem dystans'
+      %td= "#{sprintf('%.2f', Ride.by_user_id(current_user.id).distance_by_year("2020.01.01"))} #{t('.km')}"
+      %td= "#{sprintf('%.2f', Ride.by_user_id(current_user.id).hard.distance_by_year("2020.01.01"))} #{t('.km')}"
+      %td= "#{sprintf('%.2f', Ride.by_user_id(current_user.id).soft.distance_by_year("2020.01.01"))} #{t('.km')}"
+
+    %tr
+      %td= 'Razem czas'
+      %td= Ride.by_user_id(current_user.id).time_by_year("2020.01.01")
+      %td= Ride.by_user_id(current_user.id).hard.time_by_year("2020.01.01")
+      %td= Ride.by_user_id(current_user.id).soft.time_by_year("2020.01.01")
+
+
+    %tr
+      %td= 'Średnia prędkość'
+      %td= Ride.by_user_id(current_user.id).average_speed_by_year("2020.01.01") + t('.km/h')
+      %td= Ride.by_user_id(current_user.id).hard.average_speed_by_year("2020.01.01") + t('.km/h')
+      %td= Ride.by_user_id(current_user.id).soft.average_speed_by_year("2020.01.01") + t('.km/h')
+
+    %tr
+      %td= 'Średni dystans'
+      %td= Ride.by_user_id(current_user.id).average_distance_by_year("2020.01.01") + t('.km')
+      %td= Ride.by_user_id(current_user.id).hard.average_distance_by_year("2020.01.01") + t('.km')
+      %td= Ride.by_user_id(current_user.id).soft.average_distance_by_year("2020.01.01") + t('.km')
+
+    %tr
+      %td= 'Średnie tempo'
+      %td= Ride.by_user_id(current_user.id).counting_average_pace("2020.01.01")
+      %td= Ride.by_user_id(current_user.id).hard.counting_average_pace("2020.01.01")
+      %td= Ride.by_user_id(current_user.id).soft.counting_average_pace("2020.01.01")
+
+
+    %tr
+      %td= 'Ilość przejazdów'
+      %td= Ride.by_user_id(current_user.id).quantity_of_rides("2020.01.01")
+      %td= Ride.by_user_id(current_user.id).hard.quantity_of_rides("2020.01.01")
+      %td= Ride.by_user_id(current_user.id).soft.quantity_of_rides("2020.01.01")
+
+%br
+= button_to t('.back'), rides_path, method: :get, class: 'btn-sm btn-dark'
