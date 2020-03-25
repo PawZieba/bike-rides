@@ -5,7 +5,11 @@ class RidesController < ApplicationController
   # GET /rides.json
 
   def index
-    @rides = Ride.where(:user_id => current_user&.id).order('date DESC')
+    if params[:search_name]
+      @rides = Ride.where(:user_id => current_user&.id).where("name LIKE ?", "%#{params[:search_name]}%").order('date DESC')
+    else
+      @rides = Ride.where(:user_id => current_user&.id).order('date DESC')
+    end
   end
 
   # GET /rides/1
@@ -74,6 +78,6 @@ class RidesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ride_params
-      params.require(:ride).permit(:user_id, :name, :date, :distance, :hours, :minutes, :seconds, :kind)
+      params.require(:ride).permit(:user_id, :name, :date, :distance, :hours, :minutes, :seconds, :kind, :search_name)
     end
 end

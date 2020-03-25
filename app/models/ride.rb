@@ -31,13 +31,6 @@ class Ride < ApplicationRecord
     Ride.where('date BETWEEN ? AND ?', start_on, end_on).sum(:distance)
   end
 
-  def self.distance_by_date(date)
-    start_on = date.to_date.beginning_of_month
-    end_on = date.to_date.end_of_month
-    distance_sum = (Ride.where('date BETWEEN ? AND ?', start_on, end_on).sum(:distance))
-    distance_sum
-  end
-
   def self.differance(year)
     distance_by_year_to_date(year) - distance_by_year_to_date(year - 1)
   end

@@ -1,7 +1,11 @@
 %h2= "#{t('.header')} (#{@rides.count})"
+%br
 %div.float-right.text-primary
-  = button_to "+ #{t('.add_ride')}", new_ride_path, method: :get, class: 'btn-sm btn-dark'
-= button_to 'Statystyki', statistics_path, method: :get, class: 'btn-sm btn-dark'
+  = form_tag(rides_path, method: :get) do
+    = text_field_tag :search_name, params[:search_name], placeholder: t(:'rides.index.search_name')
+    = submit_tag "#{t('.search')}", :name => nil, class: 'btn-sm btn-dark'
+    = button_to "+ #{t('.add_ride')}", new_ride_path, method: :get, class: 'btn-sm btn-dark'
+= button_to "#{t('.statistics')}", statistics_path, method: :get, class: 'btn-sm btn-dark'
 %br
 %table.table-sm.table-dark.table-striped{:width => "100%"}
   %thead

@@ -55,6 +55,9 @@ pl:
   rides:
     index:
       header: 'Przejazdy rowerowe'
+      search: 'Szukaj'
+      search_name: 'Wpisz opis przejazdu'
+      statistics: 'Statystyki'
       add_ride: 'Dodaj przejazd'
       date: 'Data'
       name: 'Opis'
